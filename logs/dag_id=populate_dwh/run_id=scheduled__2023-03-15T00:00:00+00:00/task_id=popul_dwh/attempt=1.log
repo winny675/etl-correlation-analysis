@@ -1,0 +1,148 @@
+[2023-03-16 07:38:52,414] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 07:38:52,436] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 07:38:52,438] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 07:38:52,440] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-16 07:38:52,443] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 07:38:52,474] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-15 00:00:00+00:00
+[2023-03-16 07:38:52,488] {standard_task_runner.py:52} INFO - Started process 194 to run task
+[2023-03-16 07:38:52,508] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-15T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpez5htkse', '--error-file', '/tmp/tmpfwxqnmyb']
+[2023-03-16 07:38:52,511] {standard_task_runner.py:80} INFO - Job 5: Subtask popul_dwh
+[2023-03-16 07:38:52,727] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [running]> on host 22c007614a51
+[2023-03-16 07:38:52,879] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-15T00:00:00+00:00
+[2023-03-16 07:39:08,121] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1686, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 909, in do_executemany
+    **kwargs
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/extras.py", line 1267, in execute_values
+    parts.append(cur.mogrify(template, args))
+psycopg2.ProgrammingError: can't adapt type 'dict'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 38, in load_all_files
+    load_tables(fp)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 25, in load_tables
+    chunk.to_sql(os.path.basename(path).replace(".json", ""), engine, if_exists='append', chunksize=1000)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1770, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1350, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1340, in insert_records
+    table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 967, in insert
+    exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 882, in _execute_insert
+    conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1200, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 314, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1399, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1749, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1930, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1686, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 909, in do_executemany
+    **kwargs
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/extras.py", line 1267, in execute_values
+    parts.append(cur.mogrify(template, args))
+sqlalchemy.exc.ProgrammingError: (psycopg2.ProgrammingError) can't adapt type 'dict'
+[SQL: INSERT INTO yelp_academic_dataset_business (index, business_id, name, address, city, state, postal_code, latitude, longitude, stars, review_count, is_open, attributes, categories, hours) VALUES (%(index)s, %(business_id)s, %(name)s, %(address)s, %(city)s, %(state)s, %(postal_code)s, %(latitude)s, %(longitude)s, %(stars)s, %(review_count)s, %(is_open)s, %(attributes)s, %(categories)s, %(hours)s)]
+[parameters: ({'index': 0, 'business_id': 'Pns2l4eNsfO8kk83dixA6A', 'name': 'Abby Rappoport, LAC, CMQ', 'address': '1616 Chapala St, Ste 2', 'city': 'Santa Barbara', 'state': 'CA', 'postal_code': '93101', 'latitude': 34.4266787, 'longitude': -119.7111968, 'stars': 5.0, 'review_count': 7, 'is_open': 0, 'attributes': {'ByAppointmentOnly': 'True'}, 'categories': 'Doctors, Traditional Chinese Medicine, Naturopathic/Holistic, Acupuncture, Health & Medical, Nutritionists', 'hours': None}, {'index': 1, 'business_id': 'mpf3x-BjTdTEA3yCZrAYPw', 'name': 'The UPS Store', 'address': '87 Grasso Plaza Shopping Center', 'city': 'Affton', 'state': 'MO', 'postal_code': '63123', 'latitude': 38.551126, 'longitude': -90.335695, 'stars': 3.0, 'review_count': 15, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True'}, 'categories': 'Shipping Centers, Local Services, Notaries, Mailbox Centers, Printing Services', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '8:0-18:30', 'Wednesday': '8:0-18:30', 'Thursday': '8:0-18:30', 'Friday': '8:0-18:30', 'Saturday': '8:0-14:0'}}, {'index': 2, 'business_id': 'tUFrWirKiKi_TAnsVWINQQ', 'name': 'Target', 'address': '5255 E Broadway Blvd', 'city': 'Tucson', 'state': 'AZ', 'postal_code': '85711', 'latitude': 32.223236, 'longitude': -110.880452, 'stars': 3.5, 'review_count': 22, 'is_open': 0, 'attributes': {'BikeParking': 'True', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'CoatCheck': 'False', 'RestaurantsTakeOut': 'False', 'Res ... (208 characters truncated) ... Hour': 'False', 'OutdoorSeating': 'False', 'HasTV': 'False', 'RestaurantsReservations': 'False', 'DogsAllowed': 'False', 'ByAppointmentOnly': 'False'}, 'categories': 'Department Stores, Shopping, Fashion, Home & Garden, Electronics, Furniture Stores', 'hours': {'Monday': '8:0-22:0', 'Tuesday': '8:0-22:0', 'Wednesday': '8:0-22:0', 'Thursday': '8:0-22:0', 'Friday': '8:0-23:0', 'Saturday': '8:0-23:0', 'Sunday': '8:0-22:0'}}, {'index': 3, 'business_id': 'MTSW4McQd7CbVtyjqoe9mw', 'name': 'St Honore Pastries', 'address': '935 Race St', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19107', 'latitude': 39.9555052, 'longitude': -75.1555641, 'stars': 4.0, 'review_count': 80, 'is_open': 1, 'attributes': {'RestaurantsDelivery': 'False', 'OutdoorSeating': 'False', 'BusinessAcceptsCreditCards': 'False', 'BusinessParking': "{'garage': False, 'street': Tru ... (77 characters truncated) ...  'RestaurantsPriceRange2': '1', 'RestaurantsTakeOut': 'True', 'ByAppointmentOnly': 'False', 'WiFi': "u'free'", 'Alcohol': "u'none'", 'Caters': 'True'}, 'categories': 'Restaurants, Food, Bubble Tea, Coffee & Tea, Bakeries', 'hours': {'Monday': '7:0-20:0', 'Tuesday': '7:0-20:0', 'Wednesday': '7:0-20:0', 'Thursday': '7:0-20:0', 'Friday': '7:0-21:0', 'Saturday': '7:0-21:0', 'Sunday': '7:0-21:0'}}, {'index': 4, 'business_id': 'mWMc6_wTdE0EUBKIGXDVfA', 'name': 'Perkiomen Valley Brewery', 'address': '101 Walnut St', 'city': 'Green Lane', 'state': 'PA', 'postal_code': '18054', 'latitude': 40.3381827, 'longitude': -75.4716585, 'stars': 4.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'WheelchairAccessible': 'True', 'RestaurantsTakeOut': 'True', 'BusinessParking': "{'garage': None, 'street': None, 'validated': None, 'lot': True, 'valet': False}", 'BikeParking': 'True', 'GoodForKids': 'True', 'Caters': 'False'}, 'categories': 'Brewpubs, Breweries, Food', 'hours': {'Wednesday': '14:0-22:0', 'Thursday': '16:0-22:0', 'Friday': '12:0-22:0', 'Saturday': '12:0-22:0', 'Sunday': '12:0-18:0'}}, {'index': 5, 'business_id': 'CF33F8-E6oudUQ46HnavjQ', 'name': 'Sonic Drive-In', 'address': '615 S Main St', 'city': 'Ashland City', 'state': 'TN', 'postal_code': '37015', 'latitude': 36.269593, 'longitude': -87.058943, 'stars': 2.0, 'review_count': 6, 'is_open': 1, 'attributes': {'BusinessParking': 'None', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsAttire': "u'casual'", 'OutdoorSeating': 'True', 'RestaurantsReservations ... (318 characters truncated) ... elivery': 'True', 'WiFi': "u'no'", 'WheelchairAccessible': 'True', 'HasTV': 'True', 'HappyHour': 'False', 'DriveThru': 'True', 'BikeParking': 'False'}, 'categories': 'Burgers, Fast Food, Sandwiches, Food, Ice Cream & Frozen Yogurt, Restaurants', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '6:0-22:0', 'Wednesday': '6:0-22:0', 'Thursday': '6:0-22:0', 'Friday': '9:0-0:0', 'Saturday': '9:0-22:0', 'Sunday': '8:0-22:0'}}, {'index': 6, 'business_id': 'n_0UpQx1hsNbnPUSlodU8w', 'name': 'Famous Footwear', 'address': '8522 Eager Road, Dierbergs Brentwood Point', 'city': 'Brentwood', 'state': 'MO', 'postal_code': '63144', 'latitude': 38.627695, 'longitude': -90.340465, 'stars': 2.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'BikeParking': 'True', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': True, 'valet': False}"}, 'categories': 'Sporting Goods, Fashion, Shoe Stores, Shopping, Sports Wear, Accessories', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '10:0-18:0', 'Wednesday': '10:0-18:0', 'Thursday': '10:0-18:0', 'Friday': '10:0-18:0', 'Saturday': '10:0-18:0', 'Sunday': '12:0-18:0'}}, {'index': 7, 'business_id': 'qkRM_2X51Yqxk3btlwAQIg', 'name': 'Temple Beth-El', 'address': '400 Pasadena Ave S', 'city': 'St. Petersburg', 'state': 'FL', 'postal_code': '33707', 'latitude': 27.76659, 'longitude': -82.732983, 'stars': 3.5, 'review_count': 5, 'is_open': 1, 'attributes': None, 'categories': 'Synagogues, Religious Organizations', 'hours': {'Monday': '9:0-17:0', 'Tuesday': '9:0-17:0', 'Wednesday': '9:0-17:0', 'Thursday': '9:0-17:0', 'Friday': '9:0-17:0'}}  ... displaying 10 of 1000 total bound parameter sets ...  {'index': 998, 'business_id': 'TwIouh_gbW9TCSK3PhuPrg', 'name': 'T J Maxx', 'address': '545 Cool Springs Blvd', 'city': 'Franklin', 'state': 'TN', 'postal_code': '37067', 'latitude': 35.948462, 'longitude': -86.823777, 'stars': 3.0, 'review_count': 28, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BikeParking': 'False', 'RestaurantsPriceRange2': '2', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': False, 'valet': False}"}, 'categories': 'Fashion, Shopping, Department Stores', 'hours': None}, {'index': 999, 'business_id': 'sDOxVq8gQBpHFYtoxwoLWw', 'name': 'Plume Salon', 'address': '111 E Girard Ave', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19125', 'latitude': 39.9691898, 'longitude': -75.1340384, 'stars': 4.5, 'review_count': 138, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BusinessAcceptsBitcoin': 'False', 'GoodForKids': 'True', 'BusinessParking': "{'garage': False, 'street': True, 'validated': False, 'lot': False, 'valet': False}", 'ByAppointmentOnly': 'False', 'BikeParking': 'True', 'RestaurantsPriceRange2': '2'}, 'categories': 'Waxing, Beauty & Spas, Eyelash Service, Used, Vintage & Consignment, Hair Salons, Hair Removal, Makeup Artists, Shopping, Fashion', 'hours': {'Monday': '12:0-20:0', 'Tuesday': '10:0-20:0', 'Wednesday': '10:0-20:0', 'Thursday': '10:0-20:0', 'Friday': '10:0-20:0', 'Saturday': '9:0-19:0', 'Sunday': '11:0-19:0'}})]
+(Background on this error at: http://sqlalche.me/e/14/f405)
+[2023-03-16 07:39:08,245] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230315T000000, start_date=20230316T073852, end_date=20230316T073908
+[2023-03-16 07:39:08,381] {standard_task_runner.py:97} ERROR - Failed to execute job 5 for task popul_dwh ((psycopg2.ProgrammingError) can't adapt type 'dict'
+[SQL: INSERT INTO yelp_academic_dataset_business (index, business_id, name, address, city, state, postal_code, latitude, longitude, stars, review_count, is_open, attributes, categories, hours) VALUES (%(index)s, %(business_id)s, %(name)s, %(address)s, %(city)s, %(state)s, %(postal_code)s, %(latitude)s, %(longitude)s, %(stars)s, %(review_count)s, %(is_open)s, %(attributes)s, %(categories)s, %(hours)s)]
+[parameters: ({'index': 0, 'business_id': 'Pns2l4eNsfO8kk83dixA6A', 'name': 'Abby Rappoport, LAC, CMQ', 'address': '1616 Chapala St, Ste 2', 'city': 'Santa Barbara', 'state': 'CA', 'postal_code': '93101', 'latitude': 34.4266787, 'longitude': -119.7111968, 'stars': 5.0, 'review_count': 7, 'is_open': 0, 'attributes': {'ByAppointmentOnly': 'True'}, 'categories': 'Doctors, Traditional Chinese Medicine, Naturopathic/Holistic, Acupuncture, Health & Medical, Nutritionists', 'hours': None}, {'index': 1, 'business_id': 'mpf3x-BjTdTEA3yCZrAYPw', 'name': 'The UPS Store', 'address': '87 Grasso Plaza Shopping Center', 'city': 'Affton', 'state': 'MO', 'postal_code': '63123', 'latitude': 38.551126, 'longitude': -90.335695, 'stars': 3.0, 'review_count': 15, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True'}, 'categories': 'Shipping Centers, Local Services, Notaries, Mailbox Centers, Printing Services', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '8:0-18:30', 'Wednesday': '8:0-18:30', 'Thursday': '8:0-18:30', 'Friday': '8:0-18:30', 'Saturday': '8:0-14:0'}}, {'index': 2, 'business_id': 'tUFrWirKiKi_TAnsVWINQQ', 'name': 'Target', 'address': '5255 E Broadway Blvd', 'city': 'Tucson', 'state': 'AZ', 'postal_code': '85711', 'latitude': 32.223236, 'longitude': -110.880452, 'stars': 3.5, 'review_count': 22, 'is_open': 0, 'attributes': {'BikeParking': 'True', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'CoatCheck': 'False', 'RestaurantsTakeOut': 'False', 'Res ... (208 characters truncated) ... Hour': 'False', 'OutdoorSeating': 'False', 'HasTV': 'False', 'RestaurantsReservations': 'False', 'DogsAllowed': 'False', 'ByAppointmentOnly': 'False'}, 'categories': 'Department Stores, Shopping, Fashion, Home & Garden, Electronics, Furniture Stores', 'hours': {'Monday': '8:0-22:0', 'Tuesday': '8:0-22:0', 'Wednesday': '8:0-22:0', 'Thursday': '8:0-22:0', 'Friday': '8:0-23:0', 'Saturday': '8:0-23:0', 'Sunday': '8:0-22:0'}}, {'index': 3, 'business_id': 'MTSW4McQd7CbVtyjqoe9mw', 'name': 'St Honore Pastries', 'address': '935 Race St', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19107', 'latitude': 39.9555052, 'longitude': -75.1555641, 'stars': 4.0, 'review_count': 80, 'is_open': 1, 'attributes': {'RestaurantsDelivery': 'False', 'OutdoorSeating': 'False', 'BusinessAcceptsCreditCards': 'False', 'BusinessParking': "{'garage': False, 'street': Tru ... (77 characters truncated) ...  'RestaurantsPriceRange2': '1', 'RestaurantsTakeOut': 'True', 'ByAppointmentOnly': 'False', 'WiFi': "u'free'", 'Alcohol': "u'none'", 'Caters': 'True'}, 'categories': 'Restaurants, Food, Bubble Tea, Coffee & Tea, Bakeries', 'hours': {'Monday': '7:0-20:0', 'Tuesday': '7:0-20:0', 'Wednesday': '7:0-20:0', 'Thursday': '7:0-20:0', 'Friday': '7:0-21:0', 'Saturday': '7:0-21:0', 'Sunday': '7:0-21:0'}}, {'index': 4, 'business_id': 'mWMc6_wTdE0EUBKIGXDVfA', 'name': 'Perkiomen Valley Brewery', 'address': '101 Walnut St', 'city': 'Green Lane', 'state': 'PA', 'postal_code': '18054', 'latitude': 40.3381827, 'longitude': -75.4716585, 'stars': 4.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'WheelchairAccessible': 'True', 'RestaurantsTakeOut': 'True', 'BusinessParking': "{'garage': None, 'street': None, 'validated': None, 'lot': True, 'valet': False}", 'BikeParking': 'True', 'GoodForKids': 'True', 'Caters': 'False'}, 'categories': 'Brewpubs, Breweries, Food', 'hours': {'Wednesday': '14:0-22:0', 'Thursday': '16:0-22:0', 'Friday': '12:0-22:0', 'Saturday': '12:0-22:0', 'Sunday': '12:0-18:0'}}, {'index': 5, 'business_id': 'CF33F8-E6oudUQ46HnavjQ', 'name': 'Sonic Drive-In', 'address': '615 S Main St', 'city': 'Ashland City', 'state': 'TN', 'postal_code': '37015', 'latitude': 36.269593, 'longitude': -87.058943, 'stars': 2.0, 'review_count': 6, 'is_open': 1, 'attributes': {'BusinessParking': 'None', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsAttire': "u'casual'", 'OutdoorSeating': 'True', 'RestaurantsReservations ... (318 characters truncated) ... elivery': 'True', 'WiFi': "u'no'", 'WheelchairAccessible': 'True', 'HasTV': 'True', 'HappyHour': 'False', 'DriveThru': 'True', 'BikeParking': 'False'}, 'categories': 'Burgers, Fast Food, Sandwiches, Food, Ice Cream & Frozen Yogurt, Restaurants', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '6:0-22:0', 'Wednesday': '6:0-22:0', 'Thursday': '6:0-22:0', 'Friday': '9:0-0:0', 'Saturday': '9:0-22:0', 'Sunday': '8:0-22:0'}}, {'index': 6, 'business_id': 'n_0UpQx1hsNbnPUSlodU8w', 'name': 'Famous Footwear', 'address': '8522 Eager Road, Dierbergs Brentwood Point', 'city': 'Brentwood', 'state': 'MO', 'postal_code': '63144', 'latitude': 38.627695, 'longitude': -90.340465, 'stars': 2.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'BikeParking': 'True', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': True, 'valet': False}"}, 'categories': 'Sporting Goods, Fashion, Shoe Stores, Shopping, Sports Wear, Accessories', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '10:0-18:0', 'Wednesday': '10:0-18:0', 'Thursday': '10:0-18:0', 'Friday': '10:0-18:0', 'Saturday': '10:0-18:0', 'Sunday': '12:0-18:0'}}, {'index': 7, 'business_id': 'qkRM_2X51Yqxk3btlwAQIg', 'name': 'Temple Beth-El', 'address': '400 Pasadena Ave S', 'city': 'St. Petersburg', 'state': 'FL', 'postal_code': '33707', 'latitude': 27.76659, 'longitude': -82.732983, 'stars': 3.5, 'review_count': 5, 'is_open': 1, 'attributes': None, 'categories': 'Synagogues, Religious Organizations', 'hours': {'Monday': '9:0-17:0', 'Tuesday': '9:0-17:0', 'Wednesday': '9:0-17:0', 'Thursday': '9:0-17:0', 'Friday': '9:0-17:0'}}  ... displaying 10 of 1000 total bound parameter sets ...  {'index': 998, 'business_id': 'TwIouh_gbW9TCSK3PhuPrg', 'name': 'T J Maxx', 'address': '545 Cool Springs Blvd', 'city': 'Franklin', 'state': 'TN', 'postal_code': '37067', 'latitude': 35.948462, 'longitude': -86.823777, 'stars': 3.0, 'review_count': 28, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BikeParking': 'False', 'RestaurantsPriceRange2': '2', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': False, 'valet': False}"}, 'categories': 'Fashion, Shopping, Department Stores', 'hours': None}, {'index': 999, 'business_id': 'sDOxVq8gQBpHFYtoxwoLWw', 'name': 'Plume Salon', 'address': '111 E Girard Ave', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19125', 'latitude': 39.9691898, 'longitude': -75.1340384, 'stars': 4.5, 'review_count': 138, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BusinessAcceptsBitcoin': 'False', 'GoodForKids': 'True', 'BusinessParking': "{'garage': False, 'street': True, 'validated': False, 'lot': False, 'valet': False}", 'ByAppointmentOnly': 'False', 'BikeParking': 'True', 'RestaurantsPriceRange2': '2'}, 'categories': 'Waxing, Beauty & Spas, Eyelash Service, Used, Vintage & Consignment, Hair Salons, Hair Removal, Makeup Artists, Shopping, Fashion', 'hours': {'Monday': '12:0-20:0', 'Tuesday': '10:0-20:0', 'Wednesday': '10:0-20:0', 'Thursday': '10:0-20:0', 'Friday': '10:0-20:0', 'Saturday': '9:0-19:0', 'Sunday': '11:0-19:0'}})]
+(Background on this error at: http://sqlalche.me/e/14/f405); 194)
+[2023-03-16 07:39:08,819] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-16 07:39:09,113] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-16 11:46:42,372] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 11:46:42,394] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 11:46:42,396] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 11:46:42,398] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-16 11:46:42,400] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 11:46:42,424] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-15 00:00:00+00:00
+[2023-03-16 11:46:42,434] {standard_task_runner.py:52} INFO - Started process 220 to run task
+[2023-03-16 11:46:42,445] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-15T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmp_depvl2o', '--error-file', '/tmp/tmpjlr9kpbf']
+[2023-03-16 11:46:42,448] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-16 11:46:42,556] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [running]> on host e7fde63e6049
+[2023-03-16 11:46:42,694] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-15T00:00:00+00:00
+[2023-03-16 12:02:58,580] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 12:02:58,602] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 12:02:58,605] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 12:02:58,607] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-16 12:02:58,609] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 12:02:58,640] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-15 00:00:00+00:00
+[2023-03-16 12:02:58,658] {standard_task_runner.py:52} INFO - Started process 185 to run task
+[2023-03-16 12:02:58,670] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-15T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmp23bg8s7o', '--error-file', '/tmp/tmp_9vxmhyz']
+[2023-03-16 12:02:58,675] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-16 12:02:58,816] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [running]> on host b151f4e97d4c
+[2023-03-16 12:02:58,962] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-15T00:00:00+00:00
+[2023-03-16 12:04:12,165] {python.py:173} INFO - Done. Returned value was: None
+[2023-03-16 12:04:12,222] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230315T000000, start_date=20230316T120258, end_date=20230316T120412
+[2023-03-16 12:04:12,501] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-03-16 12:04:12,603] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-16 15:37:25,372] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 15:37:25,390] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [queued]>
+[2023-03-16 15:37:25,392] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 15:37:25,395] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-16 15:37:25,397] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 15:37:25,419] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-15 00:00:00+00:00
+[2023-03-16 15:37:25,430] {standard_task_runner.py:52} INFO - Started process 191 to run task
+[2023-03-16 15:37:25,438] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-15T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpjr7b909j', '--error-file', '/tmp/tmpc5p_jfw4']
+[2023-03-16 15:37:25,441] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-16 15:37:25,573] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-15T00:00:00+00:00 [running]> on host 56420715e530
+[2023-03-16 15:37:25,721] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-15T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-15T00:00:00+00:00
+[2023-03-16 15:38:32,520] {python.py:173} INFO - Done. Returned value was: None
+[2023-03-16 15:38:32,561] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230315T000000, start_date=20230316T153725, end_date=20230316T153832
+[2023-03-16 15:38:32,743] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-03-16 15:38:32,878] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,42 @@
+[2023-03-16 07:49:49,488] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh manual__2023-03-16T07:49:47.298613+00:00 [queued]>
+[2023-03-16 07:49:49,509] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh manual__2023-03-16T07:49:47.298613+00:00 [queued]>
+[2023-03-16 07:49:49,512] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 07:49:49,515] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-16 07:49:49,518] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-16 07:49:49,555] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-16 07:49:47.298613+00:00
+[2023-03-16 07:49:49,573] {standard_task_runner.py:52} INFO - Started process 323 to run task
+[2023-03-16 07:49:49,583] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'manual__2023-03-16T07:49:47.298613+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpm2xpa1q8', '--error-file', '/tmp/tmp31cpul67']
+[2023-03-16 07:49:49,592] {standard_task_runner.py:80} INFO - Job 6: Subtask popul_dwh
+[2023-03-16 07:49:49,780] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh manual__2023-03-16T07:49:47.298613+00:00 [running]> on host 22c007614a51
+[2023-03-16 07:49:49,967] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-16T07:49:47.298613+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-03-16T07:49:47.298613+00:00
+[2023-03-16 07:49:52,847] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 38, in load_all_files
+    load_tables(fp)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 25, in load_tables
+    chunk.to_sql(os.path.basename(path).replace(".json", ""), engine, if_exists='append', chunksize=100,dtype=str)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1638, in prep_table
+    raise ValueError(f"The type of {col} is not a SQLAlchemy type")
+ValueError: The type of business_id is not a SQLAlchemy type
+[2023-03-16 07:49:52,871] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230316T074947, start_date=20230316T074949, end_date=20230316T074952
+[2023-03-16 07:49:52,894] {standard_task_runner.py:97} ERROR - Failed to execute job 6 for task popul_dwh (The type of business_id is not a SQLAlchemy type; 323)
+[2023-03-16 07:49:52,936] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-16 07:49:52,988] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

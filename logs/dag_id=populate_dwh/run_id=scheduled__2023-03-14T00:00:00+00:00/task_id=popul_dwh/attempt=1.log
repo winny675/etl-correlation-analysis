@@ -1,0 +1,300 @@
+[2023-03-15 20:28:06,565] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 20:28:06,587] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 20:28:06,589] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 20:28:06,591] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-15 20:28:06,593] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 20:28:06,624] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-14 00:00:00+00:00
+[2023-03-15 20:28:06,636] {standard_task_runner.py:52} INFO - Started process 204 to run task
+[2023-03-15 20:28:06,643] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-14T00:00:00+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmp4530392i', '--error-file', '/tmp/tmpp5_246nv']
+[2023-03-15 20:28:06,655] {standard_task_runner.py:80} INFO - Job 35: Subtask popul_dwh
+[2023-03-15 20:28:06,766] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [running]> on host f0ddb1a0bc80
+[2023-03-15 20:28:06,938] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-14T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-14T00:00:00+00:00
+[2023-03-15 20:28:07,035] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 583, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 32, in load_all_files
+    load_tables(fp)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 27, in load_tables
+    chunk.to_sql(path.replace(".csv", ""), engine, if_exists='append', chunksize=1000)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 856, in create
+    if self.exists():
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 840, in exists
+    return self.pd_sql.has_table(self.name, self.schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1783, in has_table
+    insp = sa.inspect(self.connectable)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/inspection.py", line 64, in inspect
+    ret = reg(subject)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 182, in _engine_insp
+    return Inspector._construct(Inspector._init_engine, bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 117, in _construct
+    init(self, bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 128, in _init_engine
+    engine.connect().close()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3095, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 91, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3174, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3145, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2004, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 583, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+[2023-03-15 20:28:07,085] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230314T000000, start_date=20230315T202806, end_date=20230315T202807
+[2023-03-15 20:28:07,117] {standard_task_runner.py:97} ERROR - Failed to execute job 35 for task popul_dwh ((psycopg2.OperationalError) connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8); 204)
+[2023-03-15 20:28:07,160] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-15 20:28:07,287] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-15 21:21:51,958] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 21:21:52,000] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 21:21:52,005] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 21:21:52,012] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-15 21:21:52,015] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 21:21:52,085] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-14 00:00:00+00:00
+[2023-03-15 21:21:52,100] {standard_task_runner.py:52} INFO - Started process 184 to run task
+[2023-03-15 21:21:52,133] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-14T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmp8n8rv0rb', '--error-file', '/tmp/tmpdmaah22p']
+[2023-03-15 21:21:52,142] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-15 21:21:52,356] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [running]> on host da7d6be2c442
+[2023-03-15 21:21:52,545] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-14T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-14T00:00:00+00:00
+[2023-03-15 21:23:34,715] {python.py:173} INFO - Done. Returned value was: None
+[2023-03-15 21:23:34,751] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230314T000000, start_date=20230315T212151, end_date=20230315T212334
+[2023-03-15 21:23:34,838] {local_task_job.py:221} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2023-03-15 21:40:21,184] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 21:40:21,203] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 21:40:21,205] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 21:40:21,208] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-15 21:40:21,209] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 21:40:21,232] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-14 00:00:00+00:00
+[2023-03-15 21:40:21,242] {standard_task_runner.py:52} INFO - Started process 190 to run task
+[2023-03-15 21:40:21,249] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-14T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpj3u6oznn', '--error-file', '/tmp/tmp14aks8c6']
+[2023-03-15 21:40:21,252] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-15 21:40:21,372] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [running]> on host 805bdf6a5d6a
+[2023-03-15 21:40:21,563] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-14T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-14T00:00:00+00:00
+[2023-03-15 21:41:31,756] {python.py:173} INFO - Done. Returned value was: None
+[2023-03-15 21:41:31,781] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230314T000000, start_date=20230315T214021, end_date=20230315T214131
+[2023-03-15 21:41:31,867] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-03-15 21:41:31,924] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-15 22:28:43,494] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 22:28:43,513] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 22:28:43,515] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 22:28:43,516] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-15 22:28:43,518] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 22:28:43,541] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-14 00:00:00+00:00
+[2023-03-15 22:28:43,552] {standard_task_runner.py:52} INFO - Started process 208 to run task
+[2023-03-15 22:28:43,561] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-14T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpfld5xtbn', '--error-file', '/tmp/tmpe1cjv3jk']
+[2023-03-15 22:28:43,563] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-15 22:28:43,659] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [running]> on host 802856e0fb64
+[2023-03-15 22:28:43,784] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-14T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-14T00:00:00+00:00
+[2023-03-15 22:30:01,799] {python.py:173} INFO - Done. Returned value was: None
+[2023-03-15 22:30:01,825] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230314T000000, start_date=20230315T222843, end_date=20230315T223001
+[2023-03-15 22:30:01,900] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-03-15 22:30:01,968] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-15 22:57:50,613] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 22:57:50,631] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [queued]>
+[2023-03-15 22:57:50,633] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 22:57:50,635] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-15 22:57:50,637] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-15 22:57:50,659] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-14 00:00:00+00:00
+[2023-03-15 22:57:50,669] {standard_task_runner.py:52} INFO - Started process 202 to run task
+[2023-03-15 22:57:50,676] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-14T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmprk89xlrb', '--error-file', '/tmp/tmps1l99i10']
+[2023-03-15 22:57:50,680] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-15 22:57:50,777] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-14T00:00:00+00:00 [running]> on host 22c007614a51
+[2023-03-15 22:57:50,903] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-14T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-14T00:00:00+00:00
+[2023-03-15 22:57:54,260] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1686, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 909, in do_executemany
+    **kwargs
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/extras.py", line 1267, in execute_values
+    parts.append(cur.mogrify(template, args))
+psycopg2.ProgrammingError: can't adapt type 'dict'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 38, in load_all_files
+    load_tables(fp)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 25, in load_tables
+    chunk.to_sql(os.path.basename(path).replace(".json", ""), engine, if_exists='append', chunksize=1000)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1770, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1350, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1340, in insert_records
+    table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 967, in insert
+    exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 882, in _execute_insert
+    conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1200, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 314, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1399, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1749, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1930, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1686, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 909, in do_executemany
+    **kwargs
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/extras.py", line 1267, in execute_values
+    parts.append(cur.mogrify(template, args))
+sqlalchemy.exc.ProgrammingError: (psycopg2.ProgrammingError) can't adapt type 'dict'
+[SQL: INSERT INTO yelp_academic_dataset_business (index, business_id, name, address, city, state, postal_code, latitude, longitude, stars, review_count, is_open, attributes, categories, hours) VALUES (%(index)s, %(business_id)s, %(name)s, %(address)s, %(city)s, %(state)s, %(postal_code)s, %(latitude)s, %(longitude)s, %(stars)s, %(review_count)s, %(is_open)s, %(attributes)s, %(categories)s, %(hours)s)]
+[parameters: ({'index': 0, 'business_id': 'Pns2l4eNsfO8kk83dixA6A', 'name': 'Abby Rappoport, LAC, CMQ', 'address': '1616 Chapala St, Ste 2', 'city': 'Santa Barbara', 'state': 'CA', 'postal_code': '93101', 'latitude': 34.4266787, 'longitude': -119.7111968, 'stars': 5.0, 'review_count': 7, 'is_open': 0, 'attributes': {'ByAppointmentOnly': 'True'}, 'categories': 'Doctors, Traditional Chinese Medicine, Naturopathic/Holistic, Acupuncture, Health & Medical, Nutritionists', 'hours': None}, {'index': 1, 'business_id': 'mpf3x-BjTdTEA3yCZrAYPw', 'name': 'The UPS Store', 'address': '87 Grasso Plaza Shopping Center', 'city': 'Affton', 'state': 'MO', 'postal_code': '63123', 'latitude': 38.551126, 'longitude': -90.335695, 'stars': 3.0, 'review_count': 15, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True'}, 'categories': 'Shipping Centers, Local Services, Notaries, Mailbox Centers, Printing Services', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '8:0-18:30', 'Wednesday': '8:0-18:30', 'Thursday': '8:0-18:30', 'Friday': '8:0-18:30', 'Saturday': '8:0-14:0'}}, {'index': 2, 'business_id': 'tUFrWirKiKi_TAnsVWINQQ', 'name': 'Target', 'address': '5255 E Broadway Blvd', 'city': 'Tucson', 'state': 'AZ', 'postal_code': '85711', 'latitude': 32.223236, 'longitude': -110.880452, 'stars': 3.5, 'review_count': 22, 'is_open': 0, 'attributes': {'BikeParking': 'True', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'CoatCheck': 'False', 'RestaurantsTakeOut': 'False', 'Res ... (208 characters truncated) ... Hour': 'False', 'OutdoorSeating': 'False', 'HasTV': 'False', 'RestaurantsReservations': 'False', 'DogsAllowed': 'False', 'ByAppointmentOnly': 'False'}, 'categories': 'Department Stores, Shopping, Fashion, Home & Garden, Electronics, Furniture Stores', 'hours': {'Monday': '8:0-22:0', 'Tuesday': '8:0-22:0', 'Wednesday': '8:0-22:0', 'Thursday': '8:0-22:0', 'Friday': '8:0-23:0', 'Saturday': '8:0-23:0', 'Sunday': '8:0-22:0'}}, {'index': 3, 'business_id': 'MTSW4McQd7CbVtyjqoe9mw', 'name': 'St Honore Pastries', 'address': '935 Race St', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19107', 'latitude': 39.9555052, 'longitude': -75.1555641, 'stars': 4.0, 'review_count': 80, 'is_open': 1, 'attributes': {'RestaurantsDelivery': 'False', 'OutdoorSeating': 'False', 'BusinessAcceptsCreditCards': 'False', 'BusinessParking': "{'garage': False, 'street': Tru ... (77 characters truncated) ...  'RestaurantsPriceRange2': '1', 'RestaurantsTakeOut': 'True', 'ByAppointmentOnly': 'False', 'WiFi': "u'free'", 'Alcohol': "u'none'", 'Caters': 'True'}, 'categories': 'Restaurants, Food, Bubble Tea, Coffee & Tea, Bakeries', 'hours': {'Monday': '7:0-20:0', 'Tuesday': '7:0-20:0', 'Wednesday': '7:0-20:0', 'Thursday': '7:0-20:0', 'Friday': '7:0-21:0', 'Saturday': '7:0-21:0', 'Sunday': '7:0-21:0'}}, {'index': 4, 'business_id': 'mWMc6_wTdE0EUBKIGXDVfA', 'name': 'Perkiomen Valley Brewery', 'address': '101 Walnut St', 'city': 'Green Lane', 'state': 'PA', 'postal_code': '18054', 'latitude': 40.3381827, 'longitude': -75.4716585, 'stars': 4.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'WheelchairAccessible': 'True', 'RestaurantsTakeOut': 'True', 'BusinessParking': "{'garage': None, 'street': None, 'validated': None, 'lot': True, 'valet': False}", 'BikeParking': 'True', 'GoodForKids': 'True', 'Caters': 'False'}, 'categories': 'Brewpubs, Breweries, Food', 'hours': {'Wednesday': '14:0-22:0', 'Thursday': '16:0-22:0', 'Friday': '12:0-22:0', 'Saturday': '12:0-22:0', 'Sunday': '12:0-18:0'}}, {'index': 5, 'business_id': 'CF33F8-E6oudUQ46HnavjQ', 'name': 'Sonic Drive-In', 'address': '615 S Main St', 'city': 'Ashland City', 'state': 'TN', 'postal_code': '37015', 'latitude': 36.269593, 'longitude': -87.058943, 'stars': 2.0, 'review_count': 6, 'is_open': 1, 'attributes': {'BusinessParking': 'None', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsAttire': "u'casual'", 'OutdoorSeating': 'True', 'RestaurantsReservations ... (318 characters truncated) ... elivery': 'True', 'WiFi': "u'no'", 'WheelchairAccessible': 'True', 'HasTV': 'True', 'HappyHour': 'False', 'DriveThru': 'True', 'BikeParking': 'False'}, 'categories': 'Burgers, Fast Food, Sandwiches, Food, Ice Cream & Frozen Yogurt, Restaurants', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '6:0-22:0', 'Wednesday': '6:0-22:0', 'Thursday': '6:0-22:0', 'Friday': '9:0-0:0', 'Saturday': '9:0-22:0', 'Sunday': '8:0-22:0'}}, {'index': 6, 'business_id': 'n_0UpQx1hsNbnPUSlodU8w', 'name': 'Famous Footwear', 'address': '8522 Eager Road, Dierbergs Brentwood Point', 'city': 'Brentwood', 'state': 'MO', 'postal_code': '63144', 'latitude': 38.627695, 'longitude': -90.340465, 'stars': 2.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'BikeParking': 'True', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': True, 'valet': False}"}, 'categories': 'Sporting Goods, Fashion, Shoe Stores, Shopping, Sports Wear, Accessories', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '10:0-18:0', 'Wednesday': '10:0-18:0', 'Thursday': '10:0-18:0', 'Friday': '10:0-18:0', 'Saturday': '10:0-18:0', 'Sunday': '12:0-18:0'}}, {'index': 7, 'business_id': 'qkRM_2X51Yqxk3btlwAQIg', 'name': 'Temple Beth-El', 'address': '400 Pasadena Ave S', 'city': 'St. Petersburg', 'state': 'FL', 'postal_code': '33707', 'latitude': 27.76659, 'longitude': -82.732983, 'stars': 3.5, 'review_count': 5, 'is_open': 1, 'attributes': None, 'categories': 'Synagogues, Religious Organizations', 'hours': {'Monday': '9:0-17:0', 'Tuesday': '9:0-17:0', 'Wednesday': '9:0-17:0', 'Thursday': '9:0-17:0', 'Friday': '9:0-17:0'}}  ... displaying 10 of 1000 total bound parameter sets ...  {'index': 998, 'business_id': 'TwIouh_gbW9TCSK3PhuPrg', 'name': 'T J Maxx', 'address': '545 Cool Springs Blvd', 'city': 'Franklin', 'state': 'TN', 'postal_code': '37067', 'latitude': 35.948462, 'longitude': -86.823777, 'stars': 3.0, 'review_count': 28, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BikeParking': 'False', 'RestaurantsPriceRange2': '2', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': False, 'valet': False}"}, 'categories': 'Fashion, Shopping, Department Stores', 'hours': None}, {'index': 999, 'business_id': 'sDOxVq8gQBpHFYtoxwoLWw', 'name': 'Plume Salon', 'address': '111 E Girard Ave', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19125', 'latitude': 39.9691898, 'longitude': -75.1340384, 'stars': 4.5, 'review_count': 138, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BusinessAcceptsBitcoin': 'False', 'GoodForKids': 'True', 'BusinessParking': "{'garage': False, 'street': True, 'validated': False, 'lot': False, 'valet': False}", 'ByAppointmentOnly': 'False', 'BikeParking': 'True', 'RestaurantsPriceRange2': '2'}, 'categories': 'Waxing, Beauty & Spas, Eyelash Service, Used, Vintage & Consignment, Hair Salons, Hair Removal, Makeup Artists, Shopping, Fashion', 'hours': {'Monday': '12:0-20:0', 'Tuesday': '10:0-20:0', 'Wednesday': '10:0-20:0', 'Thursday': '10:0-20:0', 'Friday': '10:0-20:0', 'Saturday': '9:0-19:0', 'Sunday': '11:0-19:0'}})]
+(Background on this error at: http://sqlalche.me/e/14/f405)
+[2023-03-15 22:57:54,302] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230314T000000, start_date=20230315T225750, end_date=20230315T225754
+[2023-03-15 22:57:54,324] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task popul_dwh ((psycopg2.ProgrammingError) can't adapt type 'dict'
+[SQL: INSERT INTO yelp_academic_dataset_business (index, business_id, name, address, city, state, postal_code, latitude, longitude, stars, review_count, is_open, attributes, categories, hours) VALUES (%(index)s, %(business_id)s, %(name)s, %(address)s, %(city)s, %(state)s, %(postal_code)s, %(latitude)s, %(longitude)s, %(stars)s, %(review_count)s, %(is_open)s, %(attributes)s, %(categories)s, %(hours)s)]
+[parameters: ({'index': 0, 'business_id': 'Pns2l4eNsfO8kk83dixA6A', 'name': 'Abby Rappoport, LAC, CMQ', 'address': '1616 Chapala St, Ste 2', 'city': 'Santa Barbara', 'state': 'CA', 'postal_code': '93101', 'latitude': 34.4266787, 'longitude': -119.7111968, 'stars': 5.0, 'review_count': 7, 'is_open': 0, 'attributes': {'ByAppointmentOnly': 'True'}, 'categories': 'Doctors, Traditional Chinese Medicine, Naturopathic/Holistic, Acupuncture, Health & Medical, Nutritionists', 'hours': None}, {'index': 1, 'business_id': 'mpf3x-BjTdTEA3yCZrAYPw', 'name': 'The UPS Store', 'address': '87 Grasso Plaza Shopping Center', 'city': 'Affton', 'state': 'MO', 'postal_code': '63123', 'latitude': 38.551126, 'longitude': -90.335695, 'stars': 3.0, 'review_count': 15, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True'}, 'categories': 'Shipping Centers, Local Services, Notaries, Mailbox Centers, Printing Services', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '8:0-18:30', 'Wednesday': '8:0-18:30', 'Thursday': '8:0-18:30', 'Friday': '8:0-18:30', 'Saturday': '8:0-14:0'}}, {'index': 2, 'business_id': 'tUFrWirKiKi_TAnsVWINQQ', 'name': 'Target', 'address': '5255 E Broadway Blvd', 'city': 'Tucson', 'state': 'AZ', 'postal_code': '85711', 'latitude': 32.223236, 'longitude': -110.880452, 'stars': 3.5, 'review_count': 22, 'is_open': 0, 'attributes': {'BikeParking': 'True', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'CoatCheck': 'False', 'RestaurantsTakeOut': 'False', 'Res ... (208 characters truncated) ... Hour': 'False', 'OutdoorSeating': 'False', 'HasTV': 'False', 'RestaurantsReservations': 'False', 'DogsAllowed': 'False', 'ByAppointmentOnly': 'False'}, 'categories': 'Department Stores, Shopping, Fashion, Home & Garden, Electronics, Furniture Stores', 'hours': {'Monday': '8:0-22:0', 'Tuesday': '8:0-22:0', 'Wednesday': '8:0-22:0', 'Thursday': '8:0-22:0', 'Friday': '8:0-23:0', 'Saturday': '8:0-23:0', 'Sunday': '8:0-22:0'}}, {'index': 3, 'business_id': 'MTSW4McQd7CbVtyjqoe9mw', 'name': 'St Honore Pastries', 'address': '935 Race St', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19107', 'latitude': 39.9555052, 'longitude': -75.1555641, 'stars': 4.0, 'review_count': 80, 'is_open': 1, 'attributes': {'RestaurantsDelivery': 'False', 'OutdoorSeating': 'False', 'BusinessAcceptsCreditCards': 'False', 'BusinessParking': "{'garage': False, 'street': Tru ... (77 characters truncated) ...  'RestaurantsPriceRange2': '1', 'RestaurantsTakeOut': 'True', 'ByAppointmentOnly': 'False', 'WiFi': "u'free'", 'Alcohol': "u'none'", 'Caters': 'True'}, 'categories': 'Restaurants, Food, Bubble Tea, Coffee & Tea, Bakeries', 'hours': {'Monday': '7:0-20:0', 'Tuesday': '7:0-20:0', 'Wednesday': '7:0-20:0', 'Thursday': '7:0-20:0', 'Friday': '7:0-21:0', 'Saturday': '7:0-21:0', 'Sunday': '7:0-21:0'}}, {'index': 4, 'business_id': 'mWMc6_wTdE0EUBKIGXDVfA', 'name': 'Perkiomen Valley Brewery', 'address': '101 Walnut St', 'city': 'Green Lane', 'state': 'PA', 'postal_code': '18054', 'latitude': 40.3381827, 'longitude': -75.4716585, 'stars': 4.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'WheelchairAccessible': 'True', 'RestaurantsTakeOut': 'True', 'BusinessParking': "{'garage': None, 'street': None, 'validated': None, 'lot': True, 'valet': False}", 'BikeParking': 'True', 'GoodForKids': 'True', 'Caters': 'False'}, 'categories': 'Brewpubs, Breweries, Food', 'hours': {'Wednesday': '14:0-22:0', 'Thursday': '16:0-22:0', 'Friday': '12:0-22:0', 'Saturday': '12:0-22:0', 'Sunday': '12:0-18:0'}}, {'index': 5, 'business_id': 'CF33F8-E6oudUQ46HnavjQ', 'name': 'Sonic Drive-In', 'address': '615 S Main St', 'city': 'Ashland City', 'state': 'TN', 'postal_code': '37015', 'latitude': 36.269593, 'longitude': -87.058943, 'stars': 2.0, 'review_count': 6, 'is_open': 1, 'attributes': {'BusinessParking': 'None', 'BusinessAcceptsCreditCards': 'True', 'RestaurantsAttire': "u'casual'", 'OutdoorSeating': 'True', 'RestaurantsReservations ... (318 characters truncated) ... elivery': 'True', 'WiFi': "u'no'", 'WheelchairAccessible': 'True', 'HasTV': 'True', 'HappyHour': 'False', 'DriveThru': 'True', 'BikeParking': 'False'}, 'categories': 'Burgers, Fast Food, Sandwiches, Food, Ice Cream & Frozen Yogurt, Restaurants', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '6:0-22:0', 'Wednesday': '6:0-22:0', 'Thursday': '6:0-22:0', 'Friday': '9:0-0:0', 'Saturday': '9:0-22:0', 'Sunday': '8:0-22:0'}}, {'index': 6, 'business_id': 'n_0UpQx1hsNbnPUSlodU8w', 'name': 'Famous Footwear', 'address': '8522 Eager Road, Dierbergs Brentwood Point', 'city': 'Brentwood', 'state': 'MO', 'postal_code': '63144', 'latitude': 38.627695, 'longitude': -90.340465, 'stars': 2.5, 'review_count': 13, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'RestaurantsPriceRange2': '2', 'BikeParking': 'True', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': True, 'valet': False}"}, 'categories': 'Sporting Goods, Fashion, Shoe Stores, Shopping, Sports Wear, Accessories', 'hours': {'Monday': '0:0-0:0', 'Tuesday': '10:0-18:0', 'Wednesday': '10:0-18:0', 'Thursday': '10:0-18:0', 'Friday': '10:0-18:0', 'Saturday': '10:0-18:0', 'Sunday': '12:0-18:0'}}, {'index': 7, 'business_id': 'qkRM_2X51Yqxk3btlwAQIg', 'name': 'Temple Beth-El', 'address': '400 Pasadena Ave S', 'city': 'St. Petersburg', 'state': 'FL', 'postal_code': '33707', 'latitude': 27.76659, 'longitude': -82.732983, 'stars': 3.5, 'review_count': 5, 'is_open': 1, 'attributes': None, 'categories': 'Synagogues, Religious Organizations', 'hours': {'Monday': '9:0-17:0', 'Tuesday': '9:0-17:0', 'Wednesday': '9:0-17:0', 'Thursday': '9:0-17:0', 'Friday': '9:0-17:0'}}  ... displaying 10 of 1000 total bound parameter sets ...  {'index': 998, 'business_id': 'TwIouh_gbW9TCSK3PhuPrg', 'name': 'T J Maxx', 'address': '545 Cool Springs Blvd', 'city': 'Franklin', 'state': 'TN', 'postal_code': '37067', 'latitude': 35.948462, 'longitude': -86.823777, 'stars': 3.0, 'review_count': 28, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BikeParking': 'False', 'RestaurantsPriceRange2': '2', 'BusinessParking': "{'garage': False, 'street': False, 'validated': False, 'lot': False, 'valet': False}"}, 'categories': 'Fashion, Shopping, Department Stores', 'hours': None}, {'index': 999, 'business_id': 'sDOxVq8gQBpHFYtoxwoLWw', 'name': 'Plume Salon', 'address': '111 E Girard Ave', 'city': 'Philadelphia', 'state': 'PA', 'postal_code': '19125', 'latitude': 39.9691898, 'longitude': -75.1340384, 'stars': 4.5, 'review_count': 138, 'is_open': 1, 'attributes': {'BusinessAcceptsCreditCards': 'True', 'BusinessAcceptsBitcoin': 'False', 'GoodForKids': 'True', 'BusinessParking': "{'garage': False, 'street': True, 'validated': False, 'lot': False, 'valet': False}", 'ByAppointmentOnly': 'False', 'BikeParking': 'True', 'RestaurantsPriceRange2': '2'}, 'categories': 'Waxing, Beauty & Spas, Eyelash Service, Used, Vintage & Consignment, Hair Salons, Hair Removal, Makeup Artists, Shopping, Fashion', 'hours': {'Monday': '12:0-20:0', 'Tuesday': '10:0-20:0', 'Wednesday': '10:0-20:0', 'Thursday': '10:0-20:0', 'Friday': '10:0-20:0', 'Saturday': '9:0-19:0', 'Sunday': '11:0-19:0'}})]
+(Background on this error at: http://sqlalche.me/e/14/f405); 202)
+[2023-03-15 22:57:54,363] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-15 22:57:54,426] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

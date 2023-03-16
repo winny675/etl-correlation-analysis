@@ -1,0 +1,334 @@
+[2023-03-14 23:23:59,947] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [queued]>
+[2023-03-14 23:23:59,972] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [queued]>
+[2023-03-14 23:23:59,975] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-14 23:23:59,978] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-14 23:23:59,980] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-14 23:24:00,014] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-13 00:00:00+00:00
+[2023-03-14 23:24:00,032] {standard_task_runner.py:52} INFO - Started process 212 to run task
+[2023-03-14 23:24:00,050] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-13T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpncn4rsfh', '--error-file', '/tmp/tmp61juslz3']
+[2023-03-14 23:24:00,057] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-14 23:24:00,190] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [running]> on host 54006a032352
+[2023-03-14 23:24:00,358] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-13T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-13T00:00:00+00:00
+[2023-03-14 23:24:00,362] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: load_tables() missing 1 required positional argument: 'path'
+[2023-03-14 23:24:00,382] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230313T000000, start_date=20230314T232359, end_date=20230314T232400
+[2023-03-14 23:24:00,406] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task popul_dwh (load_tables() missing 1 required positional argument: 'path'; 212)
+[2023-03-14 23:24:00,430] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-14 23:24:00,504] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-14 23:37:52,285] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [queued]>
+[2023-03-14 23:37:52,304] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [queued]>
+[2023-03-14 23:37:52,306] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-14 23:37:52,308] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-14 23:37:52,309] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-14 23:37:52,333] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-13 00:00:00+00:00
+[2023-03-14 23:37:52,345] {standard_task_runner.py:52} INFO - Started process 221 to run task
+[2023-03-14 23:37:52,354] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-13T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmpqv42q4n6', '--error-file', '/tmp/tmptivv0aya']
+[2023-03-14 23:37:52,359] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-14 23:37:52,483] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [running]> on host 4dfc7e8c2372
+[2023-03-14 23:37:52,609] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-13T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-13T00:00:00+00:00
+[2023-03-14 23:37:52,739] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 583, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 32, in load_all_files
+    load_tables(fp)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 27, in load_tables
+    chunk.to_sql(path.replace(".csv", ""), engine, if_exists='append', chunksize=1000)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 856, in create
+    if self.exists():
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 840, in exists
+    return self.pd_sql.has_table(self.name, self.schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1783, in has_table
+    insp = sa.inspect(self.connectable)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/inspection.py", line 64, in inspect
+    ret = reg(subject)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 182, in _engine_insp
+    return Inspector._construct(Inspector._init_engine, bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 117, in _construct
+    init(self, bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 128, in _init_engine
+    engine.connect().close()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3095, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 91, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3174, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3145, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2004, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 583, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+[2023-03-14 23:37:52,774] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230313T000000, start_date=20230314T233752, end_date=20230314T233752
+[2023-03-14 23:37:52,796] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task popul_dwh ((psycopg2.OperationalError) connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (::1), port 5432 failed: Cannot assign requested address
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8); 221)
+[2023-03-14 23:37:52,851] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-14 23:37:52,919] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2023-03-14 23:42:22,814] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [queued]>
+[2023-03-14 23:42:22,831] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [queued]>
+[2023-03-14 23:42:22,833] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-14 23:42:22,834] {taskinstance.py:1357} INFO - Starting attempt 1 of 1
+[2023-03-14 23:42:22,836] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2023-03-14 23:42:22,860] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): popul_dwh> on 2023-03-13 00:00:00+00:00
+[2023-03-14 23:42:22,870] {standard_task_runner.py:52} INFO - Started process 184 to run task
+[2023-03-14 23:42:22,880] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'populate_dwh', 'popul_dwh', 'scheduled__2023-03-13T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/populate-dwh-dag.py', '--cfg-path', '/tmp/tmp2ca24h2v', '--error-file', '/tmp/tmpugtv_b3r']
+[2023-03-14 23:42:22,883] {standard_task_runner.py:80} INFO - Job 2: Subtask popul_dwh
+[2023-03-14 23:42:23,033] {task_command.py:369} INFO - Running <TaskInstance: populate_dwh.popul_dwh scheduled__2023-03-13T00:00:00+00:00 [running]> on host f0ddb1a0bc80
+[2023-03-14 23:42:23,231] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Winny M.
+AIRFLOW_CTX_DAG_ID=populate_dwh
+AIRFLOW_CTX_TASK_ID=popul_dwh
+AIRFLOW_CTX_EXECUTION_DATE=2023-03-13T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-03-13T00:00:00+00:00
+[2023-03-14 23:42:23,304] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 583, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 32, in load_all_files
+    load_tables(fp)
+  File "/opt/airflow/dags/populate-dwh-dag.py", line 27, in load_tables
+    chunk.to_sql(path.replace(".csv", ""), engine, if_exists='append', chunksize=1000)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 856, in create
+    if self.exists():
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 840, in exists
+    return self.pd_sql.has_table(self.name, self.schema)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1783, in has_table
+    insp = sa.inspect(self.connectable)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/inspection.py", line 64, in inspect
+    ret = reg(subject)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 182, in _engine_insp
+    return Inspector._construct(Inspector._init_engine, bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 117, in _construct
+    init(self, bind)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/reflection.py", line 128, in _init_engine
+    engine.connect().close()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3095, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 91, in __init__
+    else engine.raw_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3174, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3145, in _wrap_pool_connect
+    e, dialect, self
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 2004, in _handle_dbapi_exception_noconnection
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 3141, in _wrap_pool_connect
+    return fn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 301, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 755, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 419, in checkout
+    rec = pool._do_get()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 145, in _do_get
+    self._dec_overflow()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/impl.py", line 142, in _do_get
+    return self._create_connection()
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 247, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 362, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 605, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
+    with_traceback=exc_tb,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/pool/base.py", line 599, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/create.py", line 578, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 583, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/home/airflow/.local/lib/python3.7/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+[2023-03-14 23:42:23,347] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=populate_dwh, task_id=popul_dwh, execution_date=20230313T000000, start_date=20230314T234222, end_date=20230314T234223
+[2023-03-14 23:42:23,371] {standard_task_runner.py:97} ERROR - Failed to execute job 2 for task popul_dwh ((psycopg2.OperationalError) connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: http://sqlalche.me/e/14/e3q8); 184)
+[2023-03-14 23:42:23,428] {local_task_job.py:156} INFO - Task exited with return code 1
+[2023-03-14 23:42:23,505] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
